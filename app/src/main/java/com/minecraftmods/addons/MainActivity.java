@@ -39,10 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 , Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
     }
 
-    /**
-     * Showing Dialog
-     * */
-
     protected Dialog showProgressDialog(int id) {
         switch (id) {
             case progress_bar_type: // we set this to 0
@@ -60,20 +56,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void download_file(View view) {
-        File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "MCPE");
-        if (!folder.exists()) {
-            folder.mkdirs();
-                    /*folder.setExecutable(true);
-                    folder.setReadable(true);
-                    folder.setWritable(true);*/
-            Log.i("folder",folder.getPath());
-        }
-        //new DownloadFileFromURL().execute(file_url);
+        new DownloadFileFromURL().execute(file_url);
     }
 
-    /**
-     * Background Async Task to download file
-     * */
     class DownloadFileFromURL extends AsyncTask<String, String, String> {
 
         /**
@@ -108,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 File folder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) , "MCPE");
                 if (!folder.exists()) {
                     folder.mkdirs();
-                    /*folder.setExecutable(true);
+                    folder.setExecutable(true);
                     folder.setReadable(true);
-                    folder.setWritable(true);*/
+                    folder.setWritable(true);
                     Log.i("folder",folder.getPath());
                 }
 
